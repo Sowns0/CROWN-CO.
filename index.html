@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>CROWN-CO — One File, 3 Pages</title>
+<title>CROWN-CO  Shop — One File, 3 Pages</title>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
@@ -62,16 +62,16 @@ tôi</a>
 <p style="font-size:13px;color:var(--muted);margin:8px 0 12px">Gửi yêu cầu hoặc đặt lịch tư vấn cá nhân
 hóa.</p>
 <label for="cname">Họ & Tên</label>
-                <!-- Input: Họ & Tên (id=cname) — JS đọc trong quickSend click để xác thực và hiển thị lời cảm ơn -->
+                
 <input id="cname" type="text" placeholder="Nguyễn Văn A">
 <label for="cemail">Email</label>
-                <!-- Input: Email (id=cemail) — JS quickSend dùng để kiểm tra đã nhập email hay chưa -->
+                
 <input id="cemail" type="email" placeholder="email@domain.com">
 <label for="cmsg">Tin nhắn</label>
-                <!-- Textarea: Tin nhắn (id=cmsg) — JS quickSend lấy nội dung gửi yêu cầu -->
+                
 <textarea id="cmsg" placeholder="Cho chúng tôi biết nhu cầu của bạn"></textarea>
 <div class="contact-actions">
-                  <!-- Button: Gửi (id=quickSend) — JS: click -> validate 3 trường và thông báo -->
+                  
 <button class="btn" id="quickSend">Gửi</button>
 </div>
 </div>
@@ -80,7 +80,7 @@ hóa.</p>
 </section>
 </article>
 
-<!-- ===== SẢN PHẨM ===== -->
+
 <article id="products" class="section" data-page="products" tabindex="-1" hidden>
 <h2 class="section-title">Bộ Sưu Tập Sang Trọng</h2>
 
@@ -149,7 +149,7 @@ alt="Đồng hồ Thụy Sĩ"></div>
 
 <div class="product" data-colors="Đen|Nâu|Xanh Navy" data-weights="700g|800g|900g">
 <div class="imgwrap"><img
-src="https://64.media.tumblr.com/cad1a5e10fcf63a553841471f5e9b187/a9d5bcee9c65103b-53/s640x960/fc0b416d1edde9bd13a0a31c8b1d953ec7d567aa.jpg"
+src="https://giayhuyhoang.vn/wp-content/uploads/2024/01/ban-giay-da-nam-cao-cap-thu-cong-oxford-o2547-005.jpg"
 alt="Giày Ý"></div>
 <div class="product-body">
 <h3>Giày Ý sang trọng</h3>
@@ -831,7 +831,7 @@ stroke-width="2" aria-hidden="true">
 
 </article>
 
-<!-- thong tin -->
+
 
 <article id="about" class="section" data-page="about" tabindex="-1" hidden>
 <h2 class="section-title">Về CROWN-CO Shop</h2>
@@ -958,21 +958,21 @@ minlength="6">
 <h4>Thêm giỏ hàng</h4>
 <div class="pm-row">
 <label for="pmColor">Màu sắc</label>
-              <!-- Select: Màu sắc (id=pmColor) — JS openProductModal gán danh sách màu phù hợp -->
+              
 <select id="pmColor"></select>
 </div>
 <div class="pm-row">
 <label for="pmWeight">Trọng lượng</label>
-              <!-- Select: Trọng lượng (id=pmWeight) — JS openProductModal gán danh sách trọng lượng -->
+              
 <select id="pmWeight"></select>
 </div>
 <div class="pm-row">
 <label for="pmQty">Số lượng</label>
-              <!-- Input number: Số lượng (id=pmQty) — JS computePmTotal/renderPmTotal; sự kiện input cập nhật tổng -->
+              
 <input type="number" id="pmQty" min="1" value="1">
 </div>
 <div class="pm-actions">
-              <!-- Button: Thêm vào giỏ (id=pmAddCart) — JS addEventListener click -> addCart() -->
+              
 <button type="button" class="btn" id="pmAddCart">Thêm vào giỏ</button>
 </div>
 </div>
@@ -980,7 +980,7 @@ minlength="6">
 <h4>Thanh toán nhanh</h4>
 <div class="pm-row">
 <label for="pmShip">Đơn vị vận chuyển</label>
-              <!-- Select: Hãng vận chuyển (id=pmShip) — JS enhanceShippingSelect, computePmTotal, renderShipFee; sự kiện change -->
+              
 <select id="pmShip">
 <option value="ghn">GHN</option>
 <option value="ghtk">GHTK</option>
@@ -999,23 +999,23 @@ minlength="6">
 </div>
 <div class="pm-row">
 <label for="pmName">Họ và tên</label>
-              <!-- Input: Họ & Tên (id=pmName) — JS pmBuyNow click kiểm tra đủ thông tin -->
+              
 <input type="text" id="pmName" placeholder="Nguyễn Văn A">
 </div>
 <div class="pm-row">
 <label for="pmPhone">Số điện thoại</label>
-              <!-- Input: SĐT (id=pmPhone) — JS pmBuyNow click kiểm tra đủ thông tin -->
+              
 <input type="tel" id="pmPhone" placeholder="09xxxxxxxx">
 </div>
 <div class="pm-row">
 <label for="pmAddress">Địa chỉ</label>
-              <!-- Input: Địa chỉ (id=pmAddress) — JS pmBuyNow click kiểm tra đủ thông tin -->
+              
 <input type="text" id="pmAddress" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố">
 </div>
-            <!-- Tổng tiền (id=pmTotalLabel) — JS renderPmTotal cập nhật theo qty và phí ship -->
+            
 <div class="pm-total" id="pmTotalLabel">Tổng: ₫0</div>
 <div class="pm-actions">
-              <!-- Button: Đặt hàng (id=pmBuyNow) — JS tạo đơn createOrder và hiển thị ETA -->
+              
 <button type="button" class="btn" id="pmBuyNow">Đặt hàng</button>
 </div>
 </div>
@@ -1034,7 +1034,7 @@ minlength="6">
 <div class="ck-form">
 <div class="pm-row">
 <label for="ckShip">Đơn vị vận chuyển</label>
-          <!-- Select: Hãng vận chuyển (id=ckShip) — JS enhanceShippingSelect, renderShipInfo (Phí + ETA); sự kiện change -->
+          
 <select id="ckShip">
 <option value="ghn">GHN</option>
 <option value="ghtk">GHTK</option>
@@ -1053,23 +1053,23 @@ minlength="6">
 </div>
 <div class="pm-row">
 <label for="ckName">Họ và tên</label>
-          <!-- Input: Họ & Tên (id=ckName) — JS ckPlaceOrder kiểm tra đủ thông tin -->
+          
 <input type="text" id="ckName" placeholder="Nguyễn Văn A">
 </div>
 <div class="pm-row">
 <label for="ckPhone">Số điện thoại</label>
-          <!-- Input: SĐT (id=ckPhone) — JS ckPlaceOrder kiểm tra đủ thông tin -->
+          
 <input type="tel" id="ckPhone" placeholder="09xxxxxxxx">
 </div>
 <div class="pm-row">
 <label for="ckAddress">Địa chỉ</label>
-          <!-- Input: Địa chỉ (id=ckAddress) — JS ckPlaceOrder kiểm tra đủ thông tin -->
+          
 <input type="text" id="ckAddress" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố">
 </div>
-        <!-- Tổng tiền (id=ckTotalLabel) — JS renderCkTotal cập nhật theo cartTotal + phí ship -->
+        
 <div class="pm-total" id="ckTotalLabel">Tổng: ₫0</div>
 <div class="pm-actions">
-          <!-- Button: Xác nhận đặt hàng (id=ckPlaceOrder) — JS tạo đơn từ giỏ và hiển thị ETA -->
+          
 <button type="button" class="btn" id="ckPlaceOrder">Xác nhận đặt hàng</button>
 </div>
 </div>
@@ -1085,18 +1085,18 @@ minlength="6">
 <div class="shop-body">
 <div class="pm-row">
 <label for="trkSelect">Chọn đơn hàng</label>
-          <!-- Select: Đơn hàng (id=trkSelect) — JS renderTrackingOptions; sự kiện change đổi đơn đang xem -->
+          
 <select id="trkSelect"></select>
 </div>
-        <!-- Thông tin meta đơn (id=trkInfo) — JS renderTracking hiển thị hãng, thời gian, ETA -->
+        
 <div id="trkInfo" style="margin-bottom:10px;color:var(--muted)"></div>
-        <!-- Bản đồ theo dõi (id=trkMap) — JS renderTrackingMap render SVG tuyến -->
+        
 <div class="trk-map" id="trkMap"></div>
-        <!-- Danh sách các bước tiến trình (id=trkList) — JS renderTracking tạo các bước -->
+        
 <div class="trk-list" id="trkList"></div>
 <div class="pm-row">
 <label for="trkStatus">Trạng thái đơn hàng</label>
-          <!-- Select: Trạng thái (id=trkStatus) — JS renderTracking đổ dữ liệu; sự kiện change cập nhật tiến trình -->
+          
 <select id="trkStatus"></select>
 </div>
 </div>
