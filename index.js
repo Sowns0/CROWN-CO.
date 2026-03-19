@@ -4,7 +4,7 @@
   const pages = ['home', 'products', 'about'];
   const links = document.querySelectorAll('.nav-link');
 
-  // Điều hướng nội bộ: hiển thị 1 trong 3 trang (home/products/about)
+  
   function showPage(pageId, focus = true) {
     pages.forEach(p => {
       const el = document.getElementById(p);
@@ -51,7 +51,7 @@
   });
 
 
-  // Liên hệ nhanh: gửi form đơn giản ở trang chủ
+  
   const quickSend = document.getElementById('quickSend');
   if (quickSend) {
     quickSend.addEventListener('click', () => {
@@ -80,8 +80,8 @@
   const chatImageViewer = document.getElementById('chatImageViewer');
   const chatImageFull = document.getElementById('chatImageFull');
   const CHAT_KEY = 'vip_chat_messages';
-  const MAX_CHAT_STORE = 2000000; // ~2MB an toàn
-  const MAX_IMAGE_LENGTH = 300000; // giới hạn dataURL ảnh
+  const MAX_CHAT_STORE = 2000000; 
+  const MAX_IMAGE_LENGTH = 300000; 
   const productSearch = document.getElementById('productSearch');
   const productSearchBtn = document.getElementById('productSearchBtn');
   const searchHistoryEl = document.getElementById('searchHistory');
@@ -127,7 +127,7 @@
       return false;
     }
   }
-  // Khởi tạo hội thoại chat theo tài khoản hiện tại
+  
   function initChatForCurrentUser() {
     const msgs = loadMessages();
     if (!msgs.length) {
@@ -139,7 +139,7 @@
     renderMessages(msgs);
   }
 
-  // Render danh sách tin nhắn chat (user/bot)
+  
   function renderMessages(list) {
     if (!chatMessages) return;
     chatMessages.innerHTML = '';
@@ -168,7 +168,7 @@
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Luật trả lời đơn giản cho chat bot: bắt từ khóa và phản hồi phù hợp
+  
   function reply(text) {
     const t = text.toLowerCase();
     if (
@@ -314,7 +314,7 @@
     return 'Xin vui lòng đợi bên tư vấn để có thể nhận được mức giá ưu đãi nhất, chúng tôi sẽ cố gắn liên lạc lại với bạn sớm nhất có thể....';
   }
 
-  // Khởi động khối chat: toggle mở/đóng, xử lý gửi tin nhắn và phản hồi bot
+  
   if (chatToggle && chatBox && chatForm && chatText && chatMessages) {
     initChatForCurrentUser();
 
@@ -344,7 +344,7 @@
     });
   }
 
-  // Bảng emoji: mở/đóng khi nhấn nút emoji
+  
   if (chatEmojiBtn && chatText && chatEmojiPanel) {
     chatEmojiBtn.addEventListener('click', () => {
       const isHidden = chatEmojiPanel.hasAttribute('hidden');
@@ -356,7 +356,7 @@
     });
   }
 
-  // Chèn emoji vào ô nhập chat khi chọn
+  
   if (chatEmojiPanel && chatText) {
     chatEmojiPanel.addEventListener('click', e => {
       const target = e.target;
@@ -372,7 +372,7 @@
     });
   }
 
-  // Gửi ảnh trong chat: nén ảnh theo ngưỡng và thêm vào hội thoại
+  
   if (chatImageInput && chatMessages) {
     chatImageInput.addEventListener('change', e => {
       const files = e.target.files;
@@ -417,11 +417,11 @@
     });
   }
 
-  // Tiện ích: ước lượng kích thước JSON hóa của đối tượng
+  
   function jsonSize(obj) {
     try { return JSON.stringify(obj).length; } catch (_) { return 0; }
   }
-  // Đảm bảo dung lượng chat không vượt giới hạn (~2MB) bằng cách loại ảnh cũ
+  
   function ensureStorageFit(list) {
     while (jsonSize(list) > MAX_CHAT_STORE && list.length > 1) {
       const idx = list.findIndex(m => m && m.image);
@@ -648,21 +648,21 @@
   function saveUsers(list) {
     try { localStorage.setItem('vip_users', JSON.stringify(list)); } catch (_) { }
   }
-  // Tìm người dùng theo email (đã normalize)
+  
   function findUserByEmail(email) {
     const e = normalizeEmail(email);
     const users = loadUsers();
     return users.find(u => normalizeEmail(u.email) === e) || null;
   }
-  // Ghi người dùng hiện tại vào localStorage
+  
   function setCurrentUser(email) {
     try { localStorage.setItem('vip_current_user', email); } catch (_) { }
   }
-  // Lấy email người dùng hiện tại từ localStorage
+  
   function getCurrentUser() {
     try { return localStorage.getItem('vip_current_user') || ''; } catch (_) { return ''; }
   }
-  // Xóa trạng thái người dùng hiện tại
+  
   function clearCurrentUser() {
     try { localStorage.removeItem('vip_current_user'); } catch (_) { }
   }
@@ -688,16 +688,16 @@
     } catch (_) { return false; }
   }
 
-  // Tạo khóa lưu trữ theo người dùng: vip_user:{email}:{base}
+  
   function userKey(email, base) {
     return 'vip_user:' + normalizeEmail(email) + ':' + base;
   }
-  // Chọn khóa phù hợp: ưu tiên theo người dùng, fallback khóa chung
+  
   function scopedKey(base, defaultKey) {
     const email = getCurrentUser();
     return email ? userKey(email, base) : defaultKey;
   }
-  // Lưu ảnh chụp dữ liệu hiện tại sang không gian riêng của email
+  
   function snapshotForUser(email) {
     try {
       const cart = loadCart();
@@ -720,7 +720,7 @@
       localStorage.setItem(userKey(email, 'chat'), JSON.stringify(msgs));
     } catch (_) { }
   }
-  // Reset UI về trạng thái mặc định (dành cho khách/đăng xuất)
+  
   function resetToDefaultUI() {
     try { localStorage.setItem('vip_cart', JSON.stringify([])); } catch (_) { }
     try { localStorage.setItem('vip_orders', JSON.stringify([])); } catch (_) { }
@@ -736,7 +736,7 @@
       chatMessages && (chatMessages.innerHTML = '');
     }
   }
-  // Khôi phục dữ liệu UI từ không gian riêng theo email sang khóa chung
+  
   function restoreForUser(email) {
     try {
       const raw = localStorage.getItem(userKey(email, 'cart'));
@@ -1063,7 +1063,7 @@
   const CART_KEY = 'vip_cart';
   const ORDERS_KEY = 'vip_orders';
   const LAST_ORDER_KEY = 'vip_last_order';
-  // Bảng phí vận chuyển cố định theo hãng
+  
   const SHIPPING_FEES = {
     ghn: 400000,
     ghtk: 350000,
@@ -1079,7 +1079,7 @@
     dhl: 900000,
     fedex: 850000
   };
-  // Khoảng thời gian giao dự kiến (ngày) theo hãng
+  
   const SHIPPING_ETAS = {
     ghn: [2, 4],
     ghtk: [2, 5],
@@ -1171,16 +1171,16 @@
     el.textContent = 'Phí: ' + formatVND(fee) + ' • Dự kiến nhận: ' + range[0] + '–' + range[1] + ' ngày (' + d1 + ' – ' + d2 + ')';
   }
 
-  // Chuyển chuỗi giá tiền (có ký tự) thành số nguyên
+  
   function parsePrice(s) {
     const n = parseInt(String(s || '').replace(/[^\d]/g, ''), 10);
     return isNaN(n) ? 0 : n;
   }
-  // Định dạng số sang chuỗi tiền Việt (₫x.xxx.xxx)
+  
   function formatVND(n) {
     try { return '₫' + (n || 0).toLocaleString('vi-VN'); } catch (_) { return '₫' + (n || 0); }
   }
-  // Trích xuất thông tin sản phẩm từ thẻ .product trong HTML
+  
   function extractProduct(el) {
     const name = (el.querySelector('h3')?.textContent || '').trim();
     const priceText = (el.querySelector('.price')?.textContent || '').trim();
@@ -1191,7 +1191,7 @@
     const weights = (el.getAttribute('data-weights') || '').split('|').map(s => s.trim()).filter(Boolean);
     return { id, name, price: parsePrice(priceText), image: img, desc, colors, weights };
   }
-  // Tải giỏ hàng theo không gian người dùng
+  
   function loadCart() {
     try {
       const raw = localStorage.getItem(scopedKey('cart', CART_KEY));
@@ -1199,11 +1199,11 @@
       return Array.isArray(arr) ? arr : [];
     } catch (_) { return []; }
   }
-  // Lưu giỏ hàng
+  
   function saveCart(list) {
     try { localStorage.setItem(scopedKey('cart', CART_KEY), JSON.stringify(list)); } catch (_) { }
   }
-  // Thêm sản phẩm vào giỏ (gộp số lượng nếu trùng ID)
+  
   function addCart(item, qty) {
     const q = Math.max(1, parseInt(qty || 1, 10));
     const cart = loadCart();
@@ -1212,23 +1212,23 @@
     else cart.unshift({ id: item.id, name: item.name, price: item.price, image: item.image, qty: q });
     saveCart(cart);
   }
-  // Xóa sản phẩm khỏi giỏ theo ID
+  
   function removeCart(id) {
     const cart = loadCart().filter(x => x.id !== id);
     saveCart(cart);
   }
-  // Tổng số lượng mặt hàng trong giỏ
+  
   function cartCount() {
     return loadCart().reduce((a, b) => a + (b.qty || 0), 0);
   }
-  // Tổng tiền hàng (chưa gồm phí ship)
+  
   function cartTotal() {
     return loadCart().reduce((a, b) => a + (b.price || 0) * (b.qty || 0), 0);
   }
 
   const cartCountEl = document.getElementById('cartCount');
   const cartTotalEl = document.getElementById('cartTotal');
-  // Cập nhật huy hiệu giỏ: số lượng và tổng tiền
+  
   function updateCartStats() {
     if (cartCountEl) cartCountEl.textContent = String(cartCount());
     if (cartTotalEl) cartTotalEl.textContent = formatVND(cartTotal());
@@ -1254,12 +1254,12 @@
   const pmBuyNow = document.getElementById('pmBuyNow');
   let currentProduct = null;
 
-  // Hiển thị/ẩn modal chi tiết sản phẩm
+  
   function toggleProductModal(show) {
     if (!productModal) return;
     if (show) productModal.removeAttribute('hidden'); else productModal.setAttribute('hidden', '');
   }
-  // Tính tổng cho Thanh toán nhanh (giá * số lượng + phí ship)
+  
   function computePmTotal() {
     if (!currentProduct) return 0;
     const qty = Math.max(1, parseInt(pmQty?.value || '1', 10));
@@ -1267,12 +1267,12 @@
     const fee = SHIPPING_FEES[ship] || 0;
     return currentProduct.price * qty + fee;
   }
-  // Render tổng tiền ở Thanh toán nhanh
+  
   function renderPmTotal() {
     const t = computePmTotal();
     if (pmTotalLabel) pmTotalLabel.textContent = 'Tổng: ' + formatVND(t);
   }
-  // Mở modal chi tiết sản phẩm và thiết lập dữ liệu hiển thị
+  
   function openProductModal(prod) {
     currentProduct = prod;
     if (pmImage) pmImage.src = prod.image || '';
@@ -1300,7 +1300,7 @@
     renderShipFee(pmShip, 'pmShipFee');
     toggleProductModal(true);
   }
-  // Đóng các modal theo data-target
+  
   document.querySelectorAll('.shop-close').forEach(btn => {
     btn.addEventListener('click', () => {
       const t = btn.getAttribute('data-target') || '';
@@ -1312,7 +1312,7 @@
   });
   if (pmQty) pmQty.addEventListener('input', renderPmTotal);
   if (pmShip) pmShip.addEventListener('change', () => { renderPmTotal(); renderShipFee(pmShip, 'pmShipFee'); });
-  // Thêm vào giỏ từ modal sản phẩm
+  
   if (pmAddCart) {
     pmAddCart.addEventListener('click', () => {
       if (!currentProduct) return;
@@ -1322,7 +1322,7 @@
       alert('Đã thêm vào giỏ hàng');
     });
   }
-  // Đặt hàng nhanh cho sản phẩm hiện tại
+  
   if (pmBuyNow) {
     pmBuyNow.addEventListener('click', () => {
       if (!currentProduct) return;
@@ -1333,7 +1333,8 @@
       const total = computePmTotal();
       const qty = Math.max(1, parseInt(pmQty?.value || '1', 10));
       const ship = pmShip?.value || 'ghn';
-      const order = createOrder([{ id: currentProduct.id, name: currentProduct.name, price: currentProduct.price, image: currentProduct.image, qty }], ship, { name, phone, address });
+      const order = createOrder([{ id: currentProduct.id, name: currentProduct.name,
+      price: currentProduct.price, image: currentProduct.image, qty }], ship, { name, phone, address });
       addOrder(order);
       setLastOrder(order.id);
       toggleProductModal(false);
@@ -1353,12 +1354,12 @@
   const ckPlaceOrder = document.getElementById('ckPlaceOrder');
   const openCartBtn = document.getElementById('openCart');
 
-  // Hiển thị/ẩn modal giỏ hàng & thanh toán
+  
   function toggleCheckoutModal(show) {
     if (!checkoutModal) return;
     if (show) checkoutModal.removeAttribute('hidden'); else checkoutModal.setAttribute('hidden', '');
   }
-  // Tính tổng thanh toán từ giỏ hàng (tổng hàng + phí ship)
+  
   function computeCkTotal() {
     const items = loadCart();
     if (!items.length) return 0;
@@ -1366,11 +1367,11 @@
     const fee = SHIPPING_FEES[ship] || 0;
     return cartTotal() + fee;
   }
-  // Render tổng tiền ở khung thanh toán giỏ
+  
   function renderCkTotal() {
     if (ckTotalLabel) ckTotalLabel.textContent = 'Tổng: ' + formatVND(computeCkTotal());
   }
-  // Render danh sách giỏ hàng, hỗ trợ xóa item
+  
   function renderCartList() {
     if (!ckList) return;
     const items = loadCart();
@@ -1441,7 +1442,7 @@
     });
   }
 
-  // Tải danh sách đơn hàng theo không gian người dùng
+  
   function loadOrders() {
     try {
       const raw = localStorage.getItem(scopedKey('orders', ORDERS_KEY));
@@ -1449,19 +1450,19 @@
       return Array.isArray(arr) ? arr : [];
     } catch (_) { return []; }
   }
-  // Lưu danh sách đơn hàng
+  
   function saveOrders(list) {
     try { localStorage.setItem(scopedKey('orders', ORDERS_KEY), JSON.stringify(list)); } catch (_) { }
   }
-  // Sinh mã đơn ngẫu nhiên (ORD + timestamp + random)
+  
   function genOrderId() {
     return 'ORD' + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36);
   }
-  // Các bước trạng thái đơn hàng hiển thị ở theo dõi
+  
   function steps() {
     return ['Đã nhận đơn', 'Đã lấy hàng', 'Đang vận chuyển', 'Đã đến kho', 'Đang giao', 'Giao thành công'];
   }
-  // Tạo đơn hàng: tính toán phí/ETA, lưu thời điểm và tiến trình
+  
   function createOrder(items, carrier, customer) {
     const subtotal = items.reduce((a, b) => a + (b.price || 0) * (b.qty || 0), 0);
     const shipFee = SHIPPING_FEES[carrier] || 0;
@@ -1473,17 +1474,17 @@
     const expectedMax = now + eta[1] * ms;
     return { id: genOrderId(), items, carrier, customer, subtotal, shipFee, total, createdAt: Date.now(), progress: 0, expectedMin, expectedMax };
   }
-  // Thêm đơn hàng mới vào danh sách
+  
   function addOrder(order) {
     const list = loadOrders();
     list.unshift(order);
     saveOrders(list);
   }
-  // Ghi ID đơn gần nhất để tiện theo dõi lại
+  
   function setLastOrder(id) {
     try { localStorage.setItem(scopedKey('last_order', LAST_ORDER_KEY), id); } catch (_) { }
   }
-  // Đọc ID đơn gần nhất
+  
   function getLastOrder() {
     try { return localStorage.getItem(scopedKey('last_order', LAST_ORDER_KEY)) || ''; } catch (_) { return ''; }
   }
@@ -1496,12 +1497,12 @@
   const openTrackingBtn = document.getElementById('openTracking');
   const trkMap = document.getElementById('trkMap');
 
-  // Hiển thị/ẩn modal theo dõi đơn
+  
   function toggleTrackingModal(show) {
     if (!trackingModal) return;
     if (show) trackingModal.removeAttribute('hidden'); else trackingModal.setAttribute('hidden', '');
   }
-  // Render danh sách đơn hàng vào dropdown theo dõi
+  
   function renderTrackingOptions() {
     if (!trkSelect) return;
     const list = loadOrders();
@@ -1509,11 +1510,11 @@
     const last = getLastOrder();
     if (last) trkSelect.value = last;
   }
-  // Lấy đơn theo ID
+  
   function getOrderById(id) {
     return loadOrders().find(o => o.id === id) || null;
   }
-  // Render thông tin theo dõi: meta, các bước và bản đồ
+  
   function renderTracking() {
     if (!trkSelect || !trkInfo || !trkList) return;
     const id = trkSelect.value || '';
@@ -1530,7 +1531,7 @@
     }
     renderTrackingMap(o);
   }
-  // Nút mở modal theo dõi: render dữ liệu rồi mở modal
+  
   if (openTrackingBtn) {
     openTrackingBtn.addEventListener('click', () => {
       renderTrackingOptions();
@@ -1538,14 +1539,14 @@
       toggleTrackingModal(true);
     });
   }
-  // Đổi đơn đang xem: lưu ID và render lại
+  
   if (trkSelect) {
     trkSelect.addEventListener('change', () => {
       setLastOrder(trkSelect.value || '');
       renderTracking();
     });
   }
-  // Đổi trạng thái tiến trình của đơn hàng
+  
   if (trkStatus) {
     trkStatus.addEventListener('change', () => {
       const id = trkSelect?.value || '';
@@ -1561,7 +1562,7 @@
     });
   }
 
-  // Phân loại sản phẩm để chọn tuyến bản đồ minh họa
+  
   function getCategory(name) {
     const n = (name || '').toLowerCase();
     if (n.includes('túi') || n.includes('vali')) return 'bag';
@@ -1572,7 +1573,7 @@
     if (n.includes('ví')) return 'wallet';
     return 'general';
   }
-  // Điểm tuyến đường minh họa theo loại sản phẩm
+  
   function routePoints(cat) {
     if (cat === 'bag') return [[10, 160], [60, 120], [120, 80], [180, 50], [260, 30]];
     if (cat === 'watch') return [[10, 150], [80, 150], [140, 120], [200, 90], [260, 70]];
@@ -1581,7 +1582,7 @@
     if (cat === 'ring') return [[20, 150], [60, 120], [100, 90], [140, 70], [180, 90], [220, 120], [260, 150]];
     return [[10, 160], [80, 120], [150, 90], [220, 60], [280, 40]];
   }
-  // Bản đồ SVG minh họa đường vận chuyển theo tiến trình đơn hàng
+  
   function renderTrackingMap(order) {
     if (!trkMap) return;
     const w = trkMap.clientWidth || 300;
@@ -1619,12 +1620,12 @@
   const historyModal = document.getElementById('historyModal');
   const openHistoryBtn = document.getElementById('openHistory');
   const hisList = document.getElementById('hisList');
-  // Hiển thị/ẩn modal lịch sử mua hàng
+  
   function toggleHistoryModal(show) {
     if (!historyModal) return;
     if (show) historyModal.removeAttribute('hidden'); else historyModal.setAttribute('hidden', '');
   }
-  // Render danh sách lịch sử đơn đã đặt và nút xem theo dõi
+  
   function renderHistory() {
     if (!hisList) return;
     const list = loadOrders();
